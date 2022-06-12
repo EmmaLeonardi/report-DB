@@ -22,17 +22,20 @@
 \section{Analisi dei requisiti}
 Si ha intenzione di creare un database per gestire un sito di e-Commerce.
 Il database dovrà memorizzare informazioni sui prodotti in vendita, gestire l'interazione con il cliente che compra i prodotti. 
-Inoltre dovrà gestire anche i corrieri che effettuano le consegne delle spese effettuate e sapere in quale fabbrica viene prodotto quale prodotto.
+Inoltre dovrà gestire anche i corrieri che effettuano le consegne delle spese e sapere in quale fabbrica viene prodotto quale prodotto.
 \section{Intervista}
-Si vuole tenere traccia degli acquisti dei clienti. I dati dei clienti memorizzati sono nome, cognome, codice fiscale, data di nascita, email e numero di telefono, coordinate bancarie e indirizzo di residenza.
+Si vuole tenere traccia degli acquisti dei clienti. I dati dei clienti memorizzati sono nome, cognome, codice fiscale, data di nascita, 
+email e numero di telefono, coordinate bancarie e indirizzo di residenza.
 Il cliente acquista una spesa con un costo che è la somma dei costi dei prodotti presenti nella spesa. 
-I prodotti possono cambiare prezzo nel tempo e bisogna tenere memorizzato lo storico. Dei prodotti si salva il materiale, la descrizione, la taglia se abbigliamento o la scadenza se prodotto alimentare. 
-I prodotti vengono creati in fabbriche, gestite da più produttori in periodi diversi. Del produttore si salva la partita IVA e della fabbrica l'indirizzo. 
+I prodotti possono cambiare prezzo nel tempo e bisogna tenere memorizzato lo storico. 
+Dei prodotti si salva il materiale, la descrizione, la taglia se abbigliamento o la scadenza se prodotto alimentare. 
+I prodotti vengono creati in fabbriche, gestite da più produttori in periodi diversi. Una fabbrica viene gestita da un solo produttore alla volta e può produrre diversi prodotti. 
+Del produttore si salva la partita IVA e della fabbrica l'indirizzo. Un prodotto viene fabbricato in una sola fabbrica.
 La spesa viene consegnata da un corriere e si salva la data. Un corriere guida un mezzo, di cui si memorizzano il tipo di veicolo, la marca, il paese di immatricolazione e la targa.
 Del corriere vengono memorizzate la nazionalità della patente, il codice e i turni di guida. La consegna può essere standard o premium, cambia il prezzo della consegna.
-La consegna ha collegato un indirizzo, che non per forza è l'indirizzo di residenza del cliente. Più corrieri non possono guidare lo stesso mezzo in contemporanea, la consegna è effettuata da un unico corriere 
-e si riferisce ad una sola spesa. Una spesa è riferita a un solo cliente, ma un cliente può effettuare più spese. Una fabbrica viene gestita da un solo produttore alla volta e può produrre diversi prodotti. 
-Un prodotto viene fabbricato in una sola fabbrica. Si memorizzano nome, cognome, codice fiscale e data di nascita per i clienti, produttori e corrieri.
+La consegna ha collegato un indirizzo, che può essere diverso dall'indirizzo di residenza del cliente. Più corrieri non possono guidare lo stesso mezzo in contemporanea, la consegna è effettuata da un unico corriere 
+e si riferisce ad una sola spesa. Una spesa è riferita a un solo cliente, ma un cliente può effettuare più spese. 
+Si memorizzano nome, cognome, codice fiscale e data di nascita per i clienti, produttori e corrieri.
 
 
 \section{Rilevamento delle ambiguità e correzioni proposte}
