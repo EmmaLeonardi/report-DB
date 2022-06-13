@@ -84,6 +84,25 @@ L'identificatore di Spesa è un codice, anche per indirizzo.
 	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Corrieri2.pdf}
 	\caption{Schema scheletro per i Corrieri, dopo le modifiche apportate}
 \end{figure}
+\section{Schema scheletro per Produttori}
+Dopo aver esaminato il dominio del problema per la parte dei produttori, viene proposto il seguente schema scheletro.
+\begin{figure}[h]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Produttori1.pdf}
+	\caption{Schema scheletro per i Produttori}
+\end{figure}
+\section{Raffinamenti proposti per produttori}
+Come per Corriere e Cliente, Produttore è estensione dell'entità generica Persona, che viene aggiunta. 
+La relazione gestische tra Produttore e Fabbrica non è corretta, perchè non si riesce a mantenere uno storico dei diversi produttori di una fabbrica.
+Perciò si decide di trasformarla in una entità, con attributi la data di inizio e la eventuale data di fine gestione della fabbrica. Viene collegata da relazioni 1-1 verso Produttore e Fabbrica, e si mantiene 0-N nel verso opposto.
+Per mantenere lo storico dei prezzi dei prodotti si crea un'entità Prodotto In Vendita, come nello schema Clienti.
+Come identificatore di Produttore si usa quello di Persona, per Fabbrica e Prodotto si usa un codice. Prodotto in Vendita usa come identificatore quello importato da Prodotto più la data.
+\section{Schema concettuale parziale per produttori}
+\begin{figure}[h]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Produttori2.pdf}
+	\caption{Schema scheletro per i Produttori, dopo le modifiche apportate}
+\end{figure}
 
 
 \section{Schema concettuale finale}
