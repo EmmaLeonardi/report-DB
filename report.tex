@@ -46,67 +46,103 @@ Estrazione concetti\\
 Tabella termini-> concetto, correzione
 
 \chapter{Progettazione Concettuale}
-\section{Schema scheletro per Clienti}
+\section{Clienti}
+\subsection{Schema scheletro}
 Dopo aver esaminato il dominio del problema per la parte dei clienti, viene proposto il seguente schema scheletro.
 \begin{figure}[h]
 	\centering{}
 	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Clienti1.pdf}
 	\caption{Schema scheletro per i Clienti}
 \end{figure}
-\section{Raffinamenti proposti per clienti}
+\subsection{Raffinamenti proposti}
 L'entità Cliente è una estensione di un'entità generica Persona, che si decide di aggiungere allo schema. 
 L'entità Prodotto non permette di mantenere uno storico dei diversi prezzi e delle diverse "versioni" dello stesso prodotto, come la taglia o la scadenza. 
 Per questo si decide di creare un'entità Prodotto in Vendita che è il prodotto venduto al cliente, collegato al Prodotto e si aggiungono al Prodotto in Vendita il prezzo e il periodo di validità del prezzo. 
 Come identificatori per l'entità cliente si usa un codice univoco (per evitare l'omocodia del codice fiscale), per Spesa e Prodotto si usa un codice univoco e per Consegna si usa come identificatore 
 l'identificatore importato di Spesa con la data.
-\section{Schema concettuale parziale per clienti}
+\subsection{Schema concettuale parziale}
 \begin{figure}[h]
 	\centering{}
 	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Clienti2.pdf}
 	\caption{Schema scheletro per i Clienti, dopo le modifiche apportate}
 \end{figure}
-\section{Schema scheletro per Corrieri}
+\section{Corrieri}
+\subsection{Schema scheletro}
 Dopo aver esaminato il dominio del problema per la parte dei corrieri, viene proposto il seguente schema scheletro.
 \begin{figure}[h]
 	\centering{}
 	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Corrieri1.pdf}
 	\caption{Schema scheletro per i Corrieri}
 \end{figure}
-\section{Raffinamenti proposti per corrieri}
+\subsection{Raffinamenti proposti}
 L'entità Corriere è una estensione di un'entità generica Persona, che si decide di aggiungere allo schema. 
 La relazione Guida non è corretta rappresentata come relazione perchè questo impedisce ad un corriere di guidare lo stesso mezzo più volte. Guida diventa una entità quindi, in relazione 1-1 con Corriere e Mezzo, mentre le cardinalità dai lati delle entità rimangono 0-N. 
 Come identificatori per Corriere si può usare il codice di persona oppure il codice della patente. 
 Per Mezzo come identificatore uso la Targa, per Guida un codice univoco, per Consegna si usa come identificatore l'identificatore importato di Spesa con la data. 
 L'identificatore di Spesa è un codice, anche per indirizzo.
-\section{Schema concettuale parziale per corrieri}
+\subsection{Schema concettuale parziale}
 \begin{figure}[h]
 	\centering{}
 	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Corrieri2.pdf}
 	\caption{Schema scheletro per i Corrieri, dopo le modifiche apportate}
 \end{figure}
-\section{Schema scheletro per Produttori}
+\section{Produttore}
+\subsection{Schema scheletro}
 Dopo aver esaminato il dominio del problema per la parte dei produttori, viene proposto il seguente schema scheletro.
 \begin{figure}[h]
 	\centering{}
 	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Produttori1.pdf}
 	\caption{Schema scheletro per i Produttori}
 \end{figure}
-\section{Raffinamenti proposti per produttori}
+\subsection{Raffinamenti proposti}
 Come per Corriere e Cliente, Produttore è estensione dell'entità generica Persona, che viene aggiunta. 
 La relazione gestische tra Produttore e Fabbrica non è corretta, perchè non si riesce a mantenere uno storico dei diversi produttori di una fabbrica.
 Perciò si decide di trasformarla in una entità, con attributi la data di inizio e la eventuale data di fine gestione della fabbrica. Viene collegata da relazioni 1-1 verso Produttore e Fabbrica, e si mantiene 0-N nel verso opposto.
 Per mantenere lo storico dei prezzi dei prodotti si crea un'entità Prodotto In Vendita, come nello schema Clienti.
 Come identificatore di Produttore si usa quello di Persona, per Fabbrica e Prodotto si usa un codice. Prodotto in Vendita usa come identificatore quello importato da Prodotto più la data.
-\section{Schema concettuale parziale per produttori}
+\subsection{Schema concettuale parziale}
 \begin{figure}[h]
 	\centering{}
 	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Produttori2.pdf}
 	\caption{Schema scheletro per i Produttori, dopo le modifiche apportate}
 \end{figure}
+\section{Integrazione delle viste}
+Nei seguenti schemi vengono mostrate solo le entità e relazioni che servono per unire le viste, per rendere migliore l'immagine. Lo schema finale completo è nella sezione successiva.
+\subsection{Unione tra Corrieri e Clienti}
+L'unione tra Corrieri e Clienti avviene in due entità. Sia Cliente che Corriere sono generalizzazioni di Persona, quindi vengono unite nella gerarchia totale ed esclusiva.
+\begin{figure}[h]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/Unione-Clienti-Corrieri1.pdf}
+	\caption{Unione di Corrieri e Clienti, via Persona}
+\end{figure}
+Un'altra unione degli schemi concettuali avviene in corrispondenza dell'entità Consegna, che è presente in entrambi gli schemi. 
+\begin{figure}[h]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/Unione-Clienti-Corrieri2.pdf}
+	\caption{Unione di Corrieri e Clienti, via Consegna}
+\end{figure}
+\subsection{Unione tra Clienti e Produttori}
 
+L'unione tra Produttori e Clienti avviene in due entità. Sia Cliente che Produttore sono generalizzazioni di Persona, quindi vengono unite nella gerarchia totale ed esclusiva. Nell'immagine compare anche Corrriere per l'unione degli schemi precedente.
+\begin{figure}[h]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/Unione-Clienti-Produttori1.pdf}
+	\caption{Unione di Corrieri e Produttore, via Persona}
+\end{figure}
+Un'altra unione degli schemi concettuali avviene in corrispondenza dell'entità Prodotto e Prodotto in Vendita, che è presente in entrambi gli schemi. 
+\begin{figure}[h]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/Unione-Clienti-Produttori2.pdf}
+	\caption{Unione di Corrieri e Clienti, via Prodotto e Prodotto in Vendita}
+\end{figure}
 
 \section{Schema concettuale finale}
-ER finale
+Lo schema concettuale finale, dopo l'integrazione delle viste:
+\begin{figure}[h]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/SchemaConcettuale-fin.pdf}
+	\caption{Lo schema concettuale finale}
+\end{figure}
 
 \chapter{Progettazione Logica}
 \section{Stima del volume dei dati}
