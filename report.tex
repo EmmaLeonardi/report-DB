@@ -65,6 +65,26 @@ l'identificatore importato di Spesa con la data.
 	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Clienti2.pdf}
 	\caption{Schema scheletro per i Clienti, dopo le modifiche apportate}
 \end{figure}
+\section{Schema scheletro per Corrieri}
+Dopo aver esaminato il dominio del problema per la parte dei corrieri, viene proposto il seguente schema scheletro.
+\begin{figure}[h]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Corrieri1.pdf}
+	\caption{Schema scheletro per i Corrieri}
+\end{figure}
+\section{Raffinamenti proposti per corrieri}
+L'entità Corriere è una estensione di un'entità generica Persona, che si decide di aggiungere allo schema. 
+La relazione Guida non è corretta rappresentata come relazione perchè questo impedisce ad un corriere di guidare lo stesso mezzo più volte. Guida diventa una entità quindi, in relazione 1-1 con Corriere e Mezzo, mentre le cardinalità dai lati delle entità rimangono 0-N. 
+Come identificatori per Corriere si può usare il codice di persona oppure il codice della patente. 
+Per Mezzo come identificatore uso la Targa, per Guida un codice univoco, per Consegna si usa come identificatore l'identificatore importato di Spesa con la data. 
+L'identificatore di Spesa è un codice, anche per indirizzo.
+\section{Schema concettuale parziale per corrieri}
+\begin{figure}[h]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Corrieri2.pdf}
+	\caption{Schema scheletro per i Corrieri, dopo le modifiche apportate}
+\end{figure}
+
 
 \section{Schema concettuale finale}
 ER finale
