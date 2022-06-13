@@ -1,4 +1,5 @@
-\documentclass{report}
+\documentclass[a4paper,12pt]{report}
+\usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 \usepackage{url}
 \usepackage[italian]{babel}
@@ -45,10 +46,26 @@ Estrazione concetti\\
 Tabella termini-> concetto, correzione
 
 \chapter{Progettazione Concettuale}
-\section{Schema scheletro}
-ER, ragionamenti su ER, immagini ER
-\section{Raffinamenti proposti}
-ragionamenti su ER
+\section{Schema scheletro per Clienti}
+Dopo aver esaminato il dominio del problema per la parte dei clienti, viene proposto il seguente schema scheletro.
+\begin{figure}[h]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Clienti1.pdf}
+	\caption{Schema scheletro per i Clienti}
+\end{figure}
+\section{Raffinamenti proposti per clienti}
+L'entità Cliente è una estensione di un'entità generica Persona, che si decide di aggiungere allo schema. 
+L'entità Prodotto non permette di mantenere uno storico dei diversi prezzi e delle diverse "versioni" dello stesso prodotto, come la taglia o la scadenza. 
+Per questo si decide di creare un'entità Prodotto in Vendita che è il prodotto venduto al cliente, collegato al Prodotto e si aggiungono al Prodotto in Vendita il prezzo e il periodo di validità del prezzo. 
+Come identificatori per l'entità cliente si usa un codice univoco (per evitare l'omocodia del codice fiscale), per Spesa e Prodotto si usa un codice univoco e per Consegna si usa come identificatore 
+l'identificatore importato di Spesa con la data.
+\section{Schema concettuale parziale per clienti}
+\begin{figure}[h]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Clienti2.pdf}
+	\caption{Schema scheletro per i Clienti, dopo le modifiche apportate}
+\end{figure}
+
 \section{Schema concettuale finale}
 ER finale
 
