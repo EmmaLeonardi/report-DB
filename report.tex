@@ -146,11 +146,79 @@ Lo schema concettuale finale, dopo l'integrazione delle viste:
 
 \chapter{Progettazione Logica}
 \section{Stima del volume dei dati}
-Tabella volume
+\begin{center}
+    \begin{tabular}{ | c  c  c|} 
+    \hline
+    Concetto&Costrutto&Volume \\
+    \hline
+	\hline
+    Cliente&E&0 \\
+	Spesa&E&0 \\
+	Pagamento&R&0 \\
+	Prodotto in Vendita&E&0 \\
+	%Alimentare/Vestiario?
+	Contenuto&R&0 \\
+	Prodotto&E&0 \\
+	Storico Prezzi&R&0 \\
+	Fabbrica&E&0 \\
+	Creato in&R&0 \\
+	Gestione Fabbrica&E&0 \\
+	Amministrata&R&0 \\
+	Produttore&E&0\\
+	Gestisce&R&0 \\
+	Produce&R&0\\
+	Corriere&E&0\\
+	Guida&E&0\\
+	Conduce&R&0\\
+	Mezzo&E&0\\
+	Utilizzato&R&0\\
+	Consegna&E&0\\
+	%o i figli?
+	Effettua&R&0\\
+	Attraverso&R&0\\
+	Indirizzo&E&0\\
+	Riferisce&R&0\\
+	Viene Recapitata&R&0\\
+    \hline
+    \end{tabular}
+\end{center}
 \section{Descrizione delle operazioni principali e stima della loro frequenza}
-Tabella op frequenza
+\begin{center}
+    \begin{tabular}{ | c | c | c |} 
+    \hline
+    Codice&Operazione&Frequenza\\
+    \hline
+	1&Inserire un nuovo cliente&1000 al giorno\\
+	\hline
+	2&Cambiare il prezzo ad un prodotto esistente&100 al giorno\\
+	\hline
+	3&Creare una nuova guida ad un corriere ed un mezzo esistenti&200 al giorno\\
+	\hline
+	4&Leggere il prezzo medio di un prodotto&10 al giorno\\
+	\hline
+	5&Leggere quale corriere ha consegnato una data spesa&100 al giorno\\
+	\hline
+	6&Trovare il produttore di un dato prodotto&1000 al giorno\\
+	\hline
+	7&Creare una nuova spesa&100 al giorno\\
+	\hline
+	8&Leggere l'indirizzo associato ad una consegna&2000 al giorno\\
+	\hline
+	9&Cercare un prodotto di una taglia specifica&100 al giorno\\
+	\hline 
+	10&Cercare tutte le consegne di un corriere&20 al giorno\\
+	\hline
+	11&Ricavare l'ultima consegna ad un cliente&100 al giorno\\
+	\hline
+	12&Cambiare gestione ad una fabbrica&1 al giorno\\
+	\hline
+	13&Inserire un nuovo mezzo&2 al giorno\\
+	\hline
+    \end{tabular}
+\end{center}
 \section{Schemi di navigazione e tabelle degli accessi}
-Conti pesantezza operazioni, con tabelle
+Sono riportate in seguito gli accessi necessarie per eseguire le operazioni riportate. 
+Gli schemi di navigazione sono presenti solo per operazioni non banali. Per calcolare i costi si considera un accesso in scrittura come doppio rispetto a uno in lettura.
 \section{Raffinamento dello schema}
 eliminazione di identificatori esterni, attributi composti e gerarchie, scelta delle chiavi
 subsection per ognuno di questi lavori
