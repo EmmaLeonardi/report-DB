@@ -2,6 +2,7 @@
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 \usepackage{url}
+\usepackage{pdfpages}
 \usepackage[italian]{babel}
 \usepackage[italian]{cleveref}
 
@@ -57,9 +58,8 @@ Dopo aver esaminato il dominio del problema per la parte dei clienti, viene prop
 \subsection{Raffinamenti proposti}
 L'entità Cliente è una estensione di un'entità generica Persona, che si decide di aggiungere allo schema. 
 L'entità Prodotto non permette di mantenere uno storico dei diversi prezzi e delle diverse "versioni" dello stesso prodotto, come la taglia o la scadenza. 
-Per questo si decide di creare un'entità Prodotto in Vendita che è il prodotto venduto al cliente, collegato al Prodotto e si aggiungono al Prodotto in Vendita il prezzo e il periodo di validità del prezzo. 
-Come identificatori per l'entità cliente si usa un codice univoco (per evitare l'omocodia del codice fiscale), per Spesa e Prodotto si usa un codice univoco e per Consegna si usa come identificatore 
-l'identificatore importato di Spesa con la data.
+Per questo si decide di creare un'entità Prodotto in Vendita che è il prodotto venduto al cliente, collegato a Prodotto via Commercializzato e si aggiungono al Prodotto in Vendita il prezzo e il periodo di validità del prezzo. 
+Come identificatori per l'entità cliente si usa un codice univoco (per evitare l'omocodia del codice fiscale), per Spesa e Prodotto e Consegna si usa un codice univoco. Prodotto In Vendita usa come identificatore l'identificatore di Prodotto e la data di inizio di vendita.
 \subsection{Schema concettuale parziale}
 \begin{figure}[h]
 	\centering{}
@@ -76,10 +76,12 @@ Dopo aver esaminato il dominio del problema per la parte dei corrieri, viene pro
 \end{figure}
 \subsection{Raffinamenti proposti}
 L'entità Corriere è una estensione di un'entità generica Persona, che si decide di aggiungere allo schema. 
-La relazione Guida non è corretta rappresentata come relazione perchè questo impedisce ad un corriere di guidare lo stesso mezzo più volte. Guida diventa una entità quindi, in relazione 1-1 con Corriere e Mezzo, mentre le cardinalità dai lati delle entità rimangono 0-N. 
+La relazione Guida non è corretta rappresentata come relazione perchè questo impedisce ad un corriere di guidare lo stesso mezzo più volte. 
+Guida diventa una entità quindi, in relazione 1-1 con Corriere attraverso Conducente e attraverso Utilizzo per Mezzo, mentre le cardinalità dai lati delle entità rimangono 0-N. 
 Come identificatori per Corriere si può usare il codice di persona oppure il codice della patente. 
-Per Mezzo come identificatore uso la Targa, per Guida un codice univoco, per Consegna si usa come identificatore l'identificatore importato di Spesa con la data. 
-L'identificatore di Spesa è un codice, anche per indirizzo.
+Per Mezzo come identificatore uso la Targa, per Consegna,Spesa e Indirizzo un codice univoco. 
+Gli identificatori di guida sono due i possibili, o l'identificatore di Corriere unito alla data ed ora oppure l'identificatore di Mezzo unito alla data ed ora. 
+Un vincolo inespresso è il fatto che più guide dello stesso corriere possono avvenire contemporaneamente. 
 \subsection{Schema concettuale parziale}
 \begin{figure}[h]
 	\centering{}
@@ -97,7 +99,7 @@ Dopo aver esaminato il dominio del problema per la parte dei produttori, viene p
 \subsection{Raffinamenti proposti}
 Come per Corriere e Cliente, Produttore è estensione dell'entità generica Persona, che viene aggiunta. 
 La relazione gestische tra Produttore e Fabbrica non è corretta, perchè non si riesce a mantenere uno storico dei diversi produttori di una fabbrica.
-Perciò si decide di trasformarla in una entità, con attributi la data di inizio e la eventuale data di fine gestione della fabbrica. Viene collegata da relazioni 1-1 verso Produttore e Fabbrica, e si mantiene 0-N nel verso opposto.
+Perciò si decide di trasformarla in una entità, con attributi la data di inizio e la eventuale data di fine gestione della fabbrica. Viene collegata da relazioni 1-1 verso Produttore attraverso la relazione Gestione e con Amministrazione verso Fabbrica, e si mantiene 0-N nel verso opposto.
 Per mantenere lo storico dei prezzi dei prodotti si crea un'entità Prodotto In Vendita, come nello schema Clienti.
 Come identificatore di Produttore si usa quello di Persona, per Fabbrica e Prodotto si usa un codice. Prodotto in Vendita usa come identificatore quello importato da Prodotto più la data.
 \subsection{Schema concettuale parziale}
@@ -140,8 +142,13 @@ Un'altra unione degli schemi concettuali avviene in corrispondenza dell'entità 
 Lo schema concettuale finale, dopo l'integrazione delle viste:
 \begin{figure}[h]
 	\centering{}
-	\includegraphics[width=\textwidth]{img/SchemaConcettuale-fin.pdf}
-	\caption{Lo schema concettuale finale}
+	\includegraphics{img/SchemaConcettuale-fin1.pdf}
+	\caption{Lo schema concettuale finale, prima pagina}
+\end{figure}
+\begin{figure}[h]
+	\centering{}
+	\includegraphics{img/SchemaConcettuale-fin2.pdf}
+	\caption{Lo schema concettuale finale, seconda pagina}
 \end{figure}
 
 \chapter{Progettazione Logica}
