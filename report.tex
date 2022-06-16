@@ -159,33 +159,36 @@ Lo schema concettuale finale, dopo l'integrazione delle viste:
     Concetto&Costrutto&Volume \\
     \hline
 	\hline
-    Cliente&E&0 \\
-	Spesa&E&0 \\
-	Pagamento&R&0 \\
-	Prodotto in Vendita&E&0 \\
-	%Alimentare/Vestiario?
-	Contenuto&R&0 \\
-	Prodotto&E&0 \\
-	Storico Prezzi&R&0 \\
-	Fabbrica&E&0 \\
-	Creato in&R&0 \\
-	Gestione Fabbrica&E&0 \\
-	Amministrata&R&0 \\
-	Produttore&E&0\\
-	Gestisce&R&0 \\
-	Produce&R&0\\
-	Corriere&E&0\\
-	Guida&E&0\\
-	Conduce&R&0\\
-	Mezzo&E&0\\
-	Utilizzato&R&0\\
-	Consegna&E&0\\
-	%o i figli?
-	Effettua&R&0\\
-	Attraverso&R&0\\
-	Indirizzo&E&0\\
-	Riferisce&R&0\\
-	Viene Recapitata&R&0\\
+    Cliente&E&10000 \\
+	Spesa&E&50000 \\
+	Pagamento&R&50000 \\
+	\hline
+	Prodotto in Vendita (Vestiario) &E&10000 \\
+	Prodotto in Vendita (Alimentare) &E&20000 \\
+	Contenuto&R&38000 \\
+	Prodotto&E&10000 \\
+	Commercializzato&R&30000 \\
+	\hline
+	Fabbrica&E&1000 \\
+	Fabbricazione&R&3000 \\
+	Gestione Fabbrica&E&2000 \\
+	Amministrazione&R&1000 \\
+	Produttore&E&800\\
+	Gestione&R&2000 \\
+	Produzione&R&3000\\
+	\hline
+	Corriere&E&2500\\
+	Guida&E&10000\\
+	Conducente&R&10000\\
+	Mezzo&E&3000\\
+	Utilizzo&R&10000\\
+	Consegna (Standard) &E&35000\\
+	Consegna (Premium) &E&15000\\
+	Effettuazione&R&50000\\
+	Utilizzo&R&2500\\
+	Indirizzo&E&25000\\
+	Riferimento&R&30000\\
+	Recapitato&R&50000\\
     \hline
     \end{tabular}
 \end{center}
