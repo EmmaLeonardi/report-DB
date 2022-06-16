@@ -142,12 +142,12 @@ Un'altra unione degli schemi concettuali avviene in corrispondenza dell'entità 
 Lo schema concettuale finale, dopo l'integrazione delle viste:
 \begin{figure}[h]
 	\centering{}
-	\includegraphics{img/SchemaConcettuale-fin1.pdf}
+	\includegraphics[width=\textwidth]{img/SchemaConcettuale-fin1.pdf}
 	\caption{Lo schema concettuale finale, prima pagina}
 \end{figure}
 \begin{figure}[h]
 	\centering{}
-	\includegraphics{img/SchemaConcettuale-fin2.pdf}
+	\includegraphics[width=\textwidth]{img/SchemaConcettuale-fin2.pdf}
 	\caption{Lo schema concettuale finale, seconda pagina}
 \end{figure}
 
@@ -189,6 +189,7 @@ Lo schema concettuale finale, dopo l'integrazione delle viste:
 	Indirizzo&E&25000\\
 	Riferimento&R&30000\\
 	Recapitato&R&50000\\
+	Compimento&R&50000\\
     \hline
     \end{tabular}
 \end{center}
@@ -228,7 +229,208 @@ Lo schema concettuale finale, dopo l'integrazione delle viste:
 \end{center}
 \section{Schemi di navigazione e tabelle degli accessi}
 Sono riportate in seguito gli accessi necessarie per eseguire le operazioni riportate. 
-Gli schemi di navigazione sono presenti solo per operazioni non banali. Per calcolare i costi si considera un accesso in scrittura come doppio rispetto a uno in lettura.
+Gli schemi di navigazione sono presenti solo per operazioni non banali. Per calcolare i costi si considera un accesso in scrittura come doppio rispetto a uno in lettura.\\
+\textbf{Operazione 1:}
+Iscrivere un nuovo Cliente
+\begin{center}
+    \begin{tabular}{ | c   c   c   c | } 
+    \hline
+    Concetto&Costrutto&Accessi&Tipo\\
+	\hline
+	Cliente&E&1&S\\
+	\hline
+	\end{tabular}
+\end{center}
+Totale: 1S → 2000 volte al giorno\\
+\textbf{Operazione 2:}
+Cambiare il prezzo ad un prodotto esistente
+\begin{center}
+    \begin{tabular}{ | c   c   c   c | } 
+    \hline
+    Concetto&Costrutto&Accessi&Tipo\\
+	\hline
+	Commercializzato&R&1&S\\
+	\hline
+	Prodotto in Vendita&E&1&S\\
+	\hline
+	\end{tabular}
+\end{center}
+Totale: 2S → 200 volte al giorno\\
+\textbf{Operazione 3:}
+Creare una nuova guida ad un corriere ed un mezzo esistenti
+\begin{center}
+    \begin{tabular}{ | c   c   c   c | } 	
+    \hline
+	Concetto&Costrutto&Accessi&Tipo\\
+	\hline
+	Guida&E&1&S\\
+	\hline
+	Conducente&R&1&S\\
+	\hline
+	Utilizzo&R&1&S\\
+	\hline
+	\end{tabular}
+\end{center}
+Totale: 3S → 600 volte al giorno\\
+\textbf{Operazione 4:}
+Leggere il prezzo medio di un prodotto\\
+\begin{center}
+    \begin{tabular}{ | c   c   c   c | } 
+    \hline
+	Concetto&Costrutto&Accessi&Tipo\\
+	\hline
+	Commercializzato&R&3&L\\
+	\hline
+    Prodotto in Vendita&E&3&L\\
+	\hline
+	\end{tabular}
+\end{center}
+Totale: 6L → 60 volte al giorno\\
+\textbf{Operazione 5:}
+Leggere quale corriere ha consegnato una data spesa\\
+\begin{figure}[h]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/Operazione5.pdf}
+	\caption{Si legge attraverso Consegna e Compimento i dati del corriere}
+\end{figure}
+\begin{center}
+    \begin{tabular}{ | c   c   c   c | } 
+    \hline
+	Concetto&Costrutto&Accessi&Tipo\\
+	\hline
+	Recapitato&R&1&L\\
+	\hline
+    Consegna&E&1&L\\
+	\hline
+	Compimento&R&1&L\\
+	\hline
+	Corriere&E&1&L\\
+	\hline
+	\end{tabular}
+\end{center}
+Totale: 4L → 400 volte al giorno\\
+\textbf{Operazione 6:}
+Trovare il produttore di un dato prodotto\\
+\begin{center}
+    \begin{tabular}{ | c   c   c   c | } 
+    \hline
+	Concetto&Costrutto&Accessi&Tipo\\
+	\hline
+	Fabbricazione&R&1&L\\
+	\hline
+    Produttore&E&1&L\\
+	\hline
+	\end{tabular}
+\end{center}
+Totale: 2L → 2000 volte al giorno\\
+\textbf{Operazione 7:}
+Creare una nuova spesa\\
+\begin{center}
+    \begin{tabular}{ | c   c   c   c | } 
+    \hline
+	Concetto&Costrutto&Accessi&Tipo\\
+	\hline
+	Spesa&E&1&S\\
+	\hline
+	Pagamento&R&1&S\\
+	\hline
+	\end{tabular}
+\end{center}
+Totale: 2L → 200 volte al giorno\\
+\textbf{Operazione 8:}
+Leggere l'indirizzo associato ad una consegna\\
+\begin{center}
+    \begin{tabular}{ | c   c   c   c | } 
+    \hline
+	Concetto&Costrutto&Accessi&Tipo\\
+	\hline
+	Riferimento&R&1&L\\
+	\hline
+    Indirizzo&E&1&L\\
+	\hline
+	\end{tabular}
+\end{center}
+Totale: 2L → 4000 volte al giorno\\
+\textbf{Operazione 9:}
+Cercare un prodotto di una taglia specifica\\
+\begin{center}
+    \begin{tabular}{ | c   c   c   c | } 
+    \hline
+	Concetto&Costrutto&Accessi&Tipo\\
+	\hline
+	Commercializzato&R&3&L\\
+	\hline
+    Prodotto in Vendita&E&3&L\\
+	\hline
+	\end{tabular}
+\end{center}
+Totale: 6L → 600 volte al giorno\\
+
+\textbf{Operazione 10:}
+Cercare tutte le consegne di un corriere\\
+\begin{center}
+    \begin{tabular}{ | c   c   c   c | } 
+    \hline
+	Concetto&Costrutto&Accessi&Tipo\\
+	\hline
+	Compimento&R&20&L\\
+	\hline
+    Consegna&E&20&L\\
+	\hline
+	\end{tabular}
+\end{center}
+Totale: 40L → 800 volte al giorno\\
+\textbf{Operazione 11:}
+Ricavare l'ultima consegna ad un cliente\\
+\begin{figure}[h]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/Operazione5.pdf}
+	\caption{Si legge attraverso Pagamento e Spesa la data dell'ultima Consegna}
+\end{figure}
+\begin{center}
+    \begin{tabular}{ | c   c   c   c | } 
+    \hline
+	Concetto&Costrutto&Accessi&Tipo\\
+	\hline
+	Pagamento&R&5&L\\
+	\hline
+    Spesa&E&5&L\\
+	\hline
+	Recapitato&R&5&L\\
+	\hline
+	Consegna&E&5&L\\
+	\hline
+	\end{tabular}
+\end{center}
+Totale: 20L → 2000 volte al giorno\\
+\textbf{Operazione 12:}
+Cambiare gestione ad una fabbrica\\
+\begin{center}
+    \begin{tabular}{ | c   c   c   c | } 
+    \hline
+	Concetto&Costrutto&Accessi&Tipo\\
+	\hline
+	Gestione&R&1&S\\
+	\hline
+    Gestione Fabbrica&E&1&S\\
+	\hline
+	Amministrazione&E&1&S\\
+	\hline
+	\end{tabular}
+\end{center}
+Totale: 3S → 6 volte al giorno\\
+\textbf{Operazione 13:}
+Inserire un nuovo mezzo\\
+\begin{center}
+    \begin{tabular}{ | c   c   c   c | } 
+    \hline
+	Concetto&Costrutto&Accessi&Tipo\\
+	\hline
+	Mezzo&E&1&S\\
+	\hline
+	\end{tabular}
+\end{center}
+Totale: 1S → 4 volte al giorno\\
 \section{Raffinamento dello schema}
 eliminazione di identificatori esterni, attributi composti e gerarchie, scelta delle chiavi
 subsection per ognuno di questi lavori
