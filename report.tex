@@ -5,6 +5,7 @@
 \usepackage{pdfpages}
 \usepackage[italian]{babel}
 \usepackage[italian]{cleveref}
+\usepackage{float}
 
 \title{Elaborato per il corso Basi di Dati\\ \small Progetto di una base di dati per la gestione di un sito di e-Commerce}
 
@@ -50,7 +51,7 @@ Tabella termini-> concetto, correzione
 \section{Clienti}
 \subsection{Schema scheletro}
 Dopo aver esaminato il dominio del problema per la parte dei clienti, viene proposto il seguente schema scheletro.
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering{}
 	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Clienti1.pdf}
 	\caption{Schema scheletro per i Clienti}
@@ -61,7 +62,7 @@ L'entità Prodotto non permette di mantenere uno storico dei diversi prezzi e de
 Per questo si decide di creare un'entità Prodotto in Vendita che è il prodotto venduto al cliente, collegato a Prodotto via Commercializzato e si aggiungono al Prodotto in Vendita il prezzo e il periodo di validità del prezzo. 
 Come identificatori per l'entità cliente si usa un codice univoco (per evitare l'omocodia del codice fiscale), per Spesa e Prodotto e Consegna si usa un codice univoco. Prodotto In Vendita usa come identificatore l'identificatore di Prodotto e la data di inizio di vendita.
 \subsection{Schema concettuale parziale}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering{}
 	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Clienti2.pdf}
 	\caption{Schema scheletro per i Clienti, dopo le modifiche apportate}
@@ -69,7 +70,7 @@ Come identificatori per l'entità cliente si usa un codice univoco (per evitare 
 \section{Corrieri}
 \subsection{Schema scheletro}
 Dopo aver esaminato il dominio del problema per la parte dei corrieri, viene proposto il seguente schema scheletro.
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering{}
 	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Corrieri1.pdf}
 	\caption{Schema scheletro per i Corrieri}
@@ -83,7 +84,7 @@ Per Mezzo come identificatore uso la Targa, per Consegna,Spesa e Indirizzo un co
 Gli identificatori di guida sono due i possibili, o l'identificatore di Corriere unito alla data ed ora oppure l'identificatore di Mezzo unito alla data ed ora. 
 Un vincolo inespresso è il fatto che più guide dello stesso corriere possono avvenire contemporaneamente. 
 \subsection{Schema concettuale parziale}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering{}
 	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Corrieri2.pdf}
 	\caption{Schema scheletro per i Corrieri, dopo le modifiche apportate}
@@ -91,7 +92,7 @@ Un vincolo inespresso è il fatto che più guide dello stesso corriere possono a
 \section{Produttore}
 \subsection{Schema scheletro}
 Dopo aver esaminato il dominio del problema per la parte dei produttori, viene proposto il seguente schema scheletro.
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering{}
 	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Produttori1.pdf}
 	\caption{Schema scheletro per i Produttori}
@@ -103,7 +104,7 @@ Perciò si decide di trasformarla in una entità, con attributi la data di inizi
 Per mantenere lo storico dei prezzi dei prodotti si crea un'entità Prodotto In Vendita, come nello schema Clienti.
 Come identificatore di Produttore si usa quello di Persona, per Fabbrica e Prodotto si usa un codice. Prodotto in Vendita usa come identificatore quello importato da Prodotto più la data.
 \subsection{Schema concettuale parziale}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering{}
 	\includegraphics[width=\textwidth]{img/SchemaConcettuale-Produttori2.pdf}
 	\caption{Schema scheletro per i Produttori, dopo le modifiche apportate}
@@ -112,13 +113,13 @@ Come identificatore di Produttore si usa quello di Persona, per Fabbrica e Prodo
 Nei seguenti schemi vengono mostrate solo le entità e relazioni che servono per unire le viste, per rendere migliore l'immagine. Lo schema finale completo è nella sezione successiva.
 \subsection{Unione tra Corrieri e Clienti}
 L'unione tra Corrieri e Clienti avviene in due entità. Sia Cliente che Corriere sono generalizzazioni di Persona, quindi vengono unite nella gerarchia totale ed esclusiva.
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering{}
 	\includegraphics[width=\textwidth]{img/Unione-Clienti-Corrieri1.pdf}
 	\caption{Unione di Corrieri e Clienti, via Persona}
 \end{figure}
 Un'altra unione degli schemi concettuali avviene in corrispondenza dell'entità Consegna, che è presente in entrambi gli schemi. 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering{}
 	\includegraphics[width=\textwidth]{img/Unione-Clienti-Corrieri2.pdf}
 	\caption{Unione di Corrieri e Clienti, via Consegna}
@@ -126,13 +127,13 @@ Un'altra unione degli schemi concettuali avviene in corrispondenza dell'entità 
 \subsection{Unione tra Clienti e Produttori}
 
 L'unione tra Produttori e Clienti avviene in due entità. Sia Cliente che Produttore sono generalizzazioni di Persona, quindi vengono unite nella gerarchia totale ed esclusiva. Nell'immagine compare anche Corrriere per l'unione degli schemi precedente.
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering{}
 	\includegraphics[width=\textwidth]{img/Unione-Clienti-Produttori1.pdf}
 	\caption{Unione di Corrieri e Produttore, via Persona}
 \end{figure}
 Un'altra unione degli schemi concettuali avviene in corrispondenza dell'entità Prodotto e Prodotto in Vendita, che è presente in entrambi gli schemi. 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering{}
 	\includegraphics[width=\textwidth]{img/Unione-Clienti-Produttori2.pdf}
 	\caption{Unione di Corrieri e Clienti, via Prodotto e Prodotto in Vendita}
@@ -288,7 +289,7 @@ Leggere il prezzo medio di un prodotto\\
 Totale: 6L → 60 volte al giorno\\
 \textbf{Operazione 5:}
 Leggere quale corriere ha consegnato una data spesa\\
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering{}
 	\includegraphics[width=\textwidth]{img/Operazione5.pdf}
 	\caption{Si legge attraverso Consegna e Compimento i dati del corriere}
@@ -382,7 +383,7 @@ Cercare tutte le consegne di un corriere\\
 Totale: 40L → 800 volte al giorno\\
 \textbf{Operazione 11:}
 Ricavare l'ultima consegna ad un cliente\\
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering{}
 	\includegraphics[width=\textwidth]{img/Operazione5.pdf}
 	\caption{Si legge attraverso Pagamento e Spesa la data dell'ultima Consegna}
@@ -432,14 +433,180 @@ Inserire un nuovo mezzo\\
 \end{center}
 Totale: 1S → 4 volte al giorno\\
 \section{Raffinamento dello schema}
-eliminazione di identificatori esterni, attributi composti e gerarchie, scelta delle chiavi
-subsection per ognuno di questi lavori
+\subsection{Eliminazione delle gerarchie}
+Nello schema ER compaiono tre gerarchie da eliminare.\\
+Per lo schema di Persona, visto che la copertura è totale ed esclusiva e che l'entità Persona non è coinvolta in associazioni, si decide di effettuare un collasso verso il basso.
+Come identificatori delle entità si rinomina Codice Persona in Codice Cliente in cliente, e così via nelle altre due entità.
+\begin{figure}[H]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/SchemaLogico-Persona.pdf}
+	\caption{Il collasso della gerarchia di Persona}
+\end{figure}
+Per lo schema di Consegna per rimuovere la gerachia, effettuo un collasso verso l'alto, dato che le entità figlie non hanno relazioni e la copertura è totale ed esclusiva. 
+Si introduce quindi in Consegna un attributo selettore, chiamato Tipo che assumerà due valori, Standard e Premium. 
+\begin{figure}[H]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/SchemaLogico-Consegna.pdf}
+	\caption{Il collasso della gerarchia di Consegna}
+\end{figure}
+L'ultima gerarchia è quella di Prodotto In Vendita. Vista l'assenza di relazioni sulle entità figlie e la gerarchia totale ed esclusiva, effettuo un collasso verso l'alto. 
+Prodotto In Vendita quindi avrà un attributo selettore chiamato Tipo, che avrà due valori, Vestiario e Alimentare. Inoltre vengono aggiunti due attributi opzionali Taglia e Scadenza.
+\begin{figure}[H]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/SchemaLogico-Prodotto.pdf}
+	\caption{Il collasso della gerarchia di Prodotto}
+\end{figure}
+\subsection{Eliminazione degli attributi composti}
+L'unico attributo composto presente nello schema concettuale è Indirizzo, presente nelle entità Cliente e Fabbrica. Viene suddiviso in tre attributi: Via, Numero Civico, Città in ognuna delle entità.
+\subsection{Scelta delle chiavi primarie}
+Le chiavi primarie scelte sono presenti nello schema concettuale finale. 
+L'unica modifica è la creazione di un Codice Guida, che permette di identificare più facilmente la Guida.
+\subsection{Eliminazione degli identificatori esterni}
+%todo
 \section{Analisi delle ridondanze}
-Ridondanze, conti
+Ci sono due relazioni ridondanti nello schema concettuale: Compimento e Fabbricazione.
+\subsection{Analisi delle ridondanze: Compimento}
+\textbf{Con ridondanza:}\\
+\textbf{Operazione 5:}Leggere quale corriere ha consegnato una data spesa\\
+\begin{center}
+    \begin{tabular}{ | c   c   c   c | } 
+    \hline
+	Concetto&Costrutto&Accessi&Tipo\\
+	\hline
+	Recapitato&R&1&L\\
+	\hline
+    Consegna&E&1&L\\
+	\hline
+	Compimento&R&1&L\\
+	\hline
+	Corriere&E&1&L\\
+	\hline
+	\end{tabular}
+\end{center}
+Totale: 4L → 400 volte al giorno\\
+\textbf{Operazione 10:}
+Cercare tutte le consegne di un corriere\\
+\begin{center}
+    \begin{tabular}{ | c   c   c   c | } 
+    \hline
+	Concetto&Costrutto&Accessi&Tipo\\
+	\hline
+	Compimento&R&20&L\\
+	\hline
+    Consegna&E&20&L\\
+	\hline
+	\end{tabular}
+\end{center}
+Totale: 40L → 800 volte al giorno\\
+\textbf{Senza ridondanza:}\\
+\textbf{Operazione 5:}Leggere quale corriere ha consegnato una data spesa\\
+\begin{center}
+    \begin{tabular}{ | c   c   c   c | } 
+    \hline
+	Concetto&Costrutto&Accessi&Tipo\\
+	\hline
+	Recapitato&R&1&L\\
+	\hline
+    Consegna&E&1&L\\
+	\hline
+	Effettuazione&R&1&L\\
+	\hline
+	Mezzo&E&1&L\\
+	\hline
+	Utilizzo&R&4&L\\
+	\hline
+	Guida&E&4&L\\
+	\hline
+	Conducente&R&4&L\\
+	\hline
+	Corriere&E&4&L\\
+	\hline
+	\end{tabular}
+\end{center}
+Totale: 20L → 2000 volte al giorno\\
+\textbf{Operazione 10:}
+Cercare tutte le consegne di un corriere\\
+\begin{center}
+    \begin{tabular}{ | c   c   c   c | } 
+    \hline
+	Concetto&Costrutto&Accessi&Tipo\\
+	\hline
+	Conducente&R&4&L\\
+	\hline
+	Guida&E&4&L\\
+	\hline
+	Utilizzo&R&4&L\\
+	\hline
+	Mezzo&E&4&L\\
+	\hline
+	Effettuazione&R&17*4=68&L\\
+	\hline
+    Consegna&E&17*4=68&L\\
+	\hline
+	\end{tabular}
+\end{center}
+Totale: 152L → 3040 volte al giorno\\
+\\
+In totale mantenere la ridondanza ha un costo di 400+800=1200 operazioni al giorno, mentre rimuoverla ha un costo di 2000+3040=5040 operazioni al giorno. Si ha un evidente vantaggio computazionale a mantenere la ridondanza.\\
+\subsection{Analisi delle ridondanze: Fabbricazione}
+\textbf{Con ridondanza:}\\
+\textbf{Operazione 6:} Trovare il produttore di un dato prodotto\\
+\begin{center}
+    \begin{tabular}{ | c   c   c   c | } 
+    \hline
+	Concetto&Costrutto&Accessi&Tipo\\
+	\hline
+	Fabbricazione&R&1&L\\
+	\hline
+    Produttore&E&1&L\\
+	\hline
+	\end{tabular}
+\end{center}
+Totale: 2L → 2000 volte al giorno\\
+\textbf{Senza ridondanza:}\\
+\textbf{Operazione 6:} Trovare il produttore di un dato prodotto\\
+\begin{center}
+    \begin{tabular}{ | c   c   c   c | } 
+    \hline
+	Concetto&Costrutto&Accessi&Tipo\\
+	\hline
+	Produzione&R&1&L\\
+	\hline
+	Fabbrica&E&1&L\\
+	\hline
+	Amministrazione&R&1&L\\
+	\hline
+	Gestione Fabbrica&E&1&L\\
+	\hline
+	Gestione&R&1&L\\
+	\hline
+    Produttore&E&1&L\\
+	\hline
+	\end{tabular}
+\end{center}
+Totale: 6L → 6000 volte al giorno\\
+\\
+In totale mantenere la ridondanza ha un costo di 2000 operazioni al giorno, mentre rimuoverla ha un costo di 6000 operazioni al giorno. Si ha un evidente vantaggio computazionale a mantenere la ridondanza.\\
 \section{Traduzione di entità e associazioni in relazioni}
-Traduzione ER
+Cliente(\underline{Cod\_cliente}, Codice\_fiscale, Nome, Cognome, Data\_di\_nascita, Email, Numero\_di\_telefono, Via\_residenza, Numero\_civ\_residenza, Città\_residenza, Coordinate\_bancarie)\\
+Spesa(\underline{Cod\_spesa}, Costo, Cod\_cliente: Cliente)\\
+Contenuto(\underline{Cod\_spesa: Spesa, Cod\_prodotto\_vendita: Prodotto in Vendita})\\
+Prodotto In Vendita(\underline{Cod\_prodotto\_vendita}, Prezzo, Data\_inizio, Data\_fine*, Tipo, Scadenza*, Taglia*, Cod\_Prodotto: Prodotto)\\
+Prodotto(\underline{Cod\_prodotto}, Materiale, Descrizione, Cod\_produttore: Produtore, Cod\_fabbrica: Fabbrica)\\
+Fabbrica(\underline{Cod\_fabbrica}, Via, Numero\_civ, Città)\\
+Gestione Fabbrica(\underline{Cod\_gestione}, Cod\_fabbrica: Fabbrica, Data\_inizio, Data\_fine*, Cod\_produttore: Produttore)\\
+Produttore(\underline{Cod\_produttore}, Codice\_fiscale, Nome, Cognome, Data\_di\_nascita, Partita\_IVA)\\
+Consegna(\underline{Cod\_consegna}, Cod\_spesa*:Spesa, Costo\_consegna, Data, Tipo, Cod\_indirizzo: Indirizzo, Cod\_corriere: Corriere, Targa: Mezzo)\\
+Indirizzo(\underline{Cod\_indirizzo}, Via, Numero\_civico, Città, CAP, Provincia, Paese)\\
+Corriere(\underline{Cod\_corriere}, Codice\_fiscale, Nome, Cognome, Data\_di\_nascita, Cod\_patente, Nazionalità\_patente)\\
+Mezzo(\underline{Targa}, Paese\_immatricolazione, Marca, Tipo\_Veicolo)\\
+Guida(\underline{Cod\_guida}, Data\_inizio, Data\_fine*, Ora\_inizio, Ora\_fine*, Cod\_corriere: Corriere, Targa: Mezzo)\\
 \section{Schema relazionale finale}
-Schema finale
+\begin{figure}[H]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/SchemaLogico-fin.pdf}
+	\caption{Lo schema logico finale}
+\end{figure}
 \section{Traduzione delle operazioni in query SQL}
 delle operazioni
 
