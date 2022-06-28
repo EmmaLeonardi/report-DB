@@ -608,8 +608,66 @@ Guida(\underline{Cod\_guida}, Data\_inizio, Data\_fine*, Ora\_inizio, Ora\_fine*
 	\caption{Lo schema logico finale}
 \end{figure}
 \section{Traduzione delle operazioni in query SQL}
-delle operazioni
-
+\textbf{Operazione 1:}
+Iscrivere un nuovo Cliente\\
+INSERT INTO CLIENTI (Codice\_fiscale, Nome, Cognome, Data\_di\_nascita, Email, Numero\_di\_telefono, Via\_residenza, Numero\_civ\_residenza, Città\_residenza, Coordinate\_bancarie)\\
+VALUES ('?','?','?','?', '?', ?, '?', ?, '?', '?');\\
+\textbf{Operazione 2:}
+Cambiare il prezzo ad un prodotto esistente\\
+INSERT INTO PRODOTTI\_IN\_VENDITA(Prezzo, Data\_inizio, Tipo, Scadenza, Taglia, Cod\_prodotto)\\
+VALUES (?, '?', 'Vestiario/Alimentare', '?', '?', ?);\\
+\textbf{Operazione 3:}
+Creare una nuova guida ad un corriere ed un mezzo esistenti\\
+INSERT INTO GUIDE(Data\_inizio, Data\_fine, Ora\_inizio, Ora\_fine, Cod\_corriere, Targa)\\
+VALUES('?', '?', ?, ?, ?, '?');\\
+\textbf{Operazione 4:}
+Leggere il prezzo medio di un prodotto\\
+SELECT avg(Prezzo) as Prezzo\_medio\\
+FROM PRODOTTI\_IN\_VENDITA, PRODOTTI\\
+WHERE PRODOTTI\_IN\_VENDITA.Cod\_prodotto=PRODOTTI.Cod\_prodotto AND PRODOTTI.Cod\_Prodotto='?';\\
+\textbf{Operazione 5:}
+Leggere quale corriere ha consegnato una data spesa\\
+SELECT corr.Nome, corr.Cognome, corr.Cod\_corriere\\
+FROM SPESE s, CONSEGNE c, CORRIERI corr\\
+WHERE c.Cod\_spesa=s.Cod\_spesa AND c.Cod\_corriere=corr.Cod\_corriere AND s.Cod\_spesa='?';\\
+\textbf{Operazione 6:}
+Trovare il produttore di un dato prodotto\\
+SELECT PRODUTTORI.Nome, PRODUTTORI.Cognome, PRODUTTORI.Cod\_produttore\\
+FROM PRODUTTORI, PRODOTTI\\
+WHERE PRODOTTI.Cod\_produttore=PRODUTTORI.Cod\_produttore AND Cod\_prodotto='?';\\
+\textbf{Operazione 7:}
+Creare una nuova spesa\\
+INSERT INTO SPESE (Costo, Cod\_cliente)\\
+VALUES (?,?);\\
+\textbf{Operazione 8:}
+Leggere l'indirizzo associato ad una consegna\\
+SELECT i.Via, i.Numero\_civico, i.Città\\
+FROM CONSEGNE c, INDIRIZZI i\\
+WHERE c.Cod\_indirizzo=i.Cod\_indirizzo and c.Cod\_consegna=?;\\
+\textbf{Operazione 9:}
+Cercare un prodotto di una taglia specifica\\
+SELECT pv.Prezzo, pv.Cod\_prodotto\_vendita, pv.Data\_inizio, pv.Data\_fine\\
+FROM PRODOTTI p, PRODOTTI\_IN\_VENDITA pv\\
+WHERE pv.Cod\_prodotto=p.Cod\_prodotto AND p.Cod\_prodotto=4 AND pv.Taglia='?' ;\\
+\textbf{Operazione 10:}
+Cercare tutte le consegne di un corriere\\
+SELECT c.Cod\_consegna\\
+FROM CONSEGNE c, CORRIERI cc\\
+WHERE c.Cod\_corriere=cc.Cod\_corriere AND cc.Cod\_corriere='?';\\
+\textbf{Operazione 11:}
+Ricavare l'ultima consegna ad un cliente\\
+SELECT c.Data\\
+FROM CONSEGNE c, CORRIERI cc\\
+WHERE c.Cod\_corriere=cc.Cod\_corriere AND cc.Cod\_corriere='?'\\
+ORDER BY c.Data DESC LIMIT 1;\\
+\textbf{Operazione 12:}
+Cambiare gestione ad una fabbrica\\
+INSERT INTO GESTIONE\_FABBRICHE (Cod\_fabbrica, Data\_inizio, Data\_fine, Cod\_produttore)\\
+VALUES (?,'?', '?', ?);\\
+\textbf{Operazione 13:}
+Inserire un nuovo mezzo\\
+INSERT INTO MEZZI(Targa, Paese\_immatricolazione, Marca, Tipo\_veicolo)\\
+VALUES('?', '?', '?', '?');\\
 \chapter{Progettazione dell'applicazione}
 \section{Descrizione dell'architettura dell'applicazione}
 Java, operazioni banali (inserimento, ecc)
