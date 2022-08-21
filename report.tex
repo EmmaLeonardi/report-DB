@@ -670,8 +670,95 @@ INSERT INTO MEZZI(Targa, Paese\_immatricolazione, Marca, Tipo\_veicolo)\\
 VALUES('?', '?', '?', '?');\\
 \chapter{Progettazione dell'applicazione}
 \section{Descrizione dell'architettura dell'applicazione}
-Java, operazioni banali (inserimento, ecc)
-realizzata con obbligo di inserire alcuni screenshot dell'interfaccia utente
-diverse schermate (utente, corriere, ecc)
-tabella operazione originale -> metodo/classe
+L'applicazione per interfacciarsi con il Database è stata realizzata in linguaggio Java con rende possibile l'esecuzione di operazioni per l'utente. 
+L'interfacciamento versio il Database è stato fornito da JDBC, il database risiede in locale e e usa MySQL come DBMS. 
+L'applicazione usa JavaFX per la grafica, caricandola da file FXML, uno per ogni schermata che si appoggiano al loro Controller relativo. 
+L'interazione con il database è stata gestita attraverso classi che estendono l'interfaccia Table, una per tabella del DB. 
+Nel Model esistono classi che rappresentano il tipo di dato della tabella. Per il collegamento effettivo verso il database si usa una classe ConnectionProvider che ha il compito di creare la connessione.
+\\
+All'avvio dell'applicazione viene mostrata una schermata di login, per permettere ai diversi vari utenti di fare operazioni diverse.
+Attualmente per fare il login il nome utente è il codice dell'utente e la password il nome, ma in una fase successiva del progetto questo login verrà reso più sicuro, memorizzando una password (non in chiaro) e un nome utente. 
+Il login permette di identificare univocamente quale utente esegue certe azioni e modificare il database di conseguenza. Il login va a buon fine solo se le credenziali sono uguali a quelle memorizzate nel database
+\subsection*{Schermate cliente}
+Il cliente una volta entrato nell'applicazione dopo il login si trova in una schermata dove può visualizzare lo 
+storico delle spese passate, assieme allo stato di consegna. Se il cliente ha delle spese non ancora consegnate può andare a vedere nel dettaglio l'indirizzo e altri dati.
+\begin{figure}[H]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/Application/ClientMenu1.jpg}
+	\caption{La schermata iniziale per il cliente}
+\end{figure}
+Dalla schermata iniziale premendo il pulsante per creare una nuova spesa si passa alla selezione degli articoli da mettere nel carrello. 
+Qui si possono filtrare gli elementi in vendita secondo due criteri distinti, o per taglia o per scadenza, a seconda del tipo dei prodotti.
+\begin{figure}[H]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/Application/ClientMenu2.jpg}
+	\caption{La vista della creazione di una nuova spesa, con alcuni elementi nel carrello}
+\end{figure}
+Una volta che si ha un prodotto selezionato si possono andare a vedere i dettagli della produzione, come lo stabilimento produttivo oppure il produttore.
+\begin{figure}[H]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/Application/ClientMenu3.jpg}
+	\caption{I dettagli della produzione di un prodotto, come il prezzo medio e le versioni esisenti}
+\end{figure}
+Se si prosegue e si arriva alla schermata del pagamento, si può scegliere un indirizzo a cui 
+farsi consegnare la spesa tra quelli usati in precedenza, altrimenti se ne può creare uno nuovo. 
+Una volta selezionato l'indirizzo e il tipo di consegna desiderata si puo completare il pagamento, 
+e se va a buon fine un messaggio comparirà a schermo dicendo il numero identificativo della spesa e si torna alla schermata iniziale del cliente.
+\begin{figure}[H]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/Application/ClientMenu4.jpg}
+	\caption{La pagina dove si conclude la spesa, scegliendo l'indirizzo, il tipo di consegna e effettuando il pagamento}
+\end{figure}
+
+\subsection*{Schermate corriere}
+Il corriere parte da una schermata dove vengono mostrate le consegne effettuate precedentemente, con la possibilità di guardare i dettagli delle consegne svolte.
+Quando si va a creare una nuova consegna, il corriere sceglie tra le guide effettuate tra cui associare la consegna. 
+Una volta effettuata la consegna, l'applicazione torna alla schermata iniziale.
+\begin{figure}[H]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/Application/Courier1.jpg}
+	\caption{Associazione tra consegna e guida}
+\end{figure}
+Se la guida corretta non è presente si può crearla e una volta scelto un periodo svolgimento si può cercare un veicolo libero da associare. 
+La nuova guida può essere creata solo se il corriere non è impegnato in altre guide nel periodo prescelto ed esistono mezzi liberi.
+\begin{figure}[H]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/Application/Courier2.jpg}
+	\caption{Creazione di una nuova guida}
+\end{figure}
+\subsection*{Schermate produttore}
+La pagina iniziale per un produttore è una vista globale dei prodotti creati nelle fabbriche attualmente gestite. 
+Si può decidere cambiare la messa in vendita di un prodotto, ad esempio creando una nuova taglia oppure creare un prodotto completamente nuovo.
+\begin{figure}[H]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/Application/Producer1.jpg}
+	\caption{Pagina iniziale produttore}
+\end{figure}
+Quando si crea una nuova versione del prodotto, si specifica un prezzo, un periodo di vendita del prodotto e l'eventuale taglia o scadenza.
+\begin{figure}[H]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/Application/Producer2.jpg}
+	\caption{Creazione di una nuova versione del prodotto}
+\end{figure}
+Nella creazione di un nuovo prodotto, il produttore deve scegliere tra le fabbriche che attualmente gestisce e compilare alcuni campi, 
+come materiale e descrizione, per finire la creazione.
+\begin{figure}[H]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/Application/Producer3.jpg}
+	\caption{Creazione di una nuovo prodotto}
+\end{figure}
+\subsection*{Schermate amministratore}
+L'amministratore del sistema non è una figura presente negli schemi logici, ma è la persona che si occupa di creare corrieri, clienti e produttori, fabbriche, veicoli e gestioni fabbriche. 
+Così facendo queste operazioni possibili nel database vengono rappresentate nell'applicazione. L'unica operazione eseguibile dall'applicazione è l'eliminazione delle entità, 
+che essendo un'operazione complessa, vista la necessità di eliminare "a cascata" tutte le entità precedentemente legate al target da eliminare, 
+si è deciso di lasciarla per una successiva implementazione, rendendola attualmente possibile solo via query diretta al database. 
+Le pagine di creazione e modifica delle entità permettono di inserire i dati relativi alle entità, mantenendo intatti i vincoli espressi nella creazione del database. 
+\begin{figure}[H]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/Application/Admin.jpg}
+	\caption{Pagina della modifica delle gestioni delle fabbriche}
+\end{figure}
+In particolare nella gestione delle fabbriche viene implementato il vincolo inespresso che impedisce ad una fabbrica di essere gestita da più produttori in contemporanea 
+perchè il salvataggio dei dati avviene solo se i dati sono legali, altrimenti compare un messaggio di errore.
+%tabella operazione originale -> metodo/classe
 \end{document}
