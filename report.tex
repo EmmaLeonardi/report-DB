@@ -29,6 +29,44 @@ Inoltre dovrà gestire anche i corrieri che effettuano le consegne delle spese e
 \section{Intervista}
 Si vuole tenere traccia degli acquisti dei clienti. I dati dei clienti memorizzati sono nome, cognome, codice fiscale, data di nascita, 
 email e numero di telefono, coordinate bancarie e indirizzo di residenza.
+Il cliente acquista un'insieme di prodotti con un costo che è la somma dei costi singoli. 
+I prodotti possono cambiare prezzo nel tempo e bisogna tenere memorizzato lo storico. 
+Dei prodotti si salva il materiale, la descrizione, la taglia se abbigliamento o la scadenza se prodotto alimentare. 
+I prodotti vengono creati in fabbriche, gestite da più produttori in periodi diversi. Una fabbrica viene gestita da un solo amministratore alla volta e può produrre diversi prodotti. 
+Del produttore si salva la partita IVA e della fabbrica l'indirizzo. Un prodotto viene fabbricato in una sola fabbrica.
+La spesa viene consegnata da un corriere e si salva la data. Un autista guida un mezzo per fare le spedizioni, di cui si memorizzano il tipo di veicolo, la marca, il paese di immatricolazione e la targa.
+Del corriere vengono memorizzate la nazionalità della patente, il codice e i turni di guida. La consegna può essere standard o premium, e cambia il prezzo.
+La consegna ha collegato un indirizzo, che può essere diverso dall'indirizzo di residenza del cliente. Più autisti non possono guidare lo stesso furgone in contemporanea, la consegna è effettuata da un unico corriere 
+e si riferisce ad una sola spesa. Una spesa è riferita a un solo acquirente, ma un cliente può effettuare più spese. 
+Si memorizzano nome, cognome, codice fiscale e data di nascita per i clienti, produttori e corrieri.
+
+\section{Rilevamento delle ambiguità e correzioni proposte}
+\begin{center}
+    \begin{tabular}{ | c | c | c |} 
+    \hline
+    Termine&Descrizione&Sinonimi \\
+    \hline
+    Cliente&Una persona che usa il sistema per acquistare prodotti&Acquirente \\
+	\hline
+	Spesa&L'insieme dei prodotti acquistati insieme da un cliente&...\\
+	\hline
+	Prodotto&Un articolo in vendita&Oggetto\\
+	\hline
+	Produttore&Una persona che gestisce una fabbrica&Amministratore\\
+	\hline
+	Corriere&Una persona che guida un mezzo e fa consegne&Autista\\
+	\hline
+	Mezzo&Un mezzo di trasporto per fare le consegne&Veicolo\\
+	\hline
+	Consegna&Una spesa in arrivo o arrivata al cliente&Spedizione\\
+	\hline
+    \end{tabular}
+\end{center}
+\section{Definizione delle specifiche in linguaggio naturale ed estrazione dei concetti principali}
+Usando la tabella sopra, rimuovo l'ambiguità dal testo dell'intervista.\\
+
+Si vuole tenere traccia degli acquisti dei clienti. I dati dei clienti memorizzati sono nome, cognome, codice fiscale, data di nascita, 
+email e numero di telefono, coordinate bancarie e indirizzo di residenza.
 Il cliente acquista una spesa con un costo che è la somma dei costi dei prodotti presenti nella spesa. 
 I prodotti possono cambiare prezzo nel tempo e bisogna tenere memorizzato lo storico. 
 Dei prodotti si salva il materiale, la descrizione, la taglia se abbigliamento o la scadenza se prodotto alimentare. 
@@ -39,13 +77,6 @@ Del corriere vengono memorizzate la nazionalità della patente, il codice e i tu
 La consegna ha collegato un indirizzo, che può essere diverso dall'indirizzo di residenza del cliente. Più corrieri non possono guidare lo stesso mezzo in contemporanea, la consegna è effettuata da un unico corriere 
 e si riferisce ad una sola spesa. Una spesa è riferita a un solo cliente, ma un cliente può effettuare più spese. 
 Si memorizzano nome, cognome, codice fiscale e data di nascita per i clienti, produttori e corrieri.
-
-
-\section{Rilevamento delle ambiguità e correzioni proposte}
-Correzoni
-\section{Definizione delle specifiche in linguaggio naturale ed estrazione dei concetti principali}
-Estrazione concetti\\
-Tabella termini-> concetto, correzione
 
 \chapter{Progettazione Concettuale}
 \section{Clienti}
@@ -676,9 +707,15 @@ L'applicazione usa JavaFX per la grafica, caricandola da file FXML, uno per ogni
 L'interazione con il database è stata gestita attraverso classi che estendono l'interfaccia Table, una per tabella del DB. 
 Nel Model esistono classi che rappresentano il tipo di dato della tabella. Per il collegamento effettivo verso il database si usa una classe ConnectionProvider che ha il compito di creare la connessione.
 \\
-All'avvio dell'applicazione viene mostrata una schermata di login, per permettere ai diversi vari utenti di fare operazioni diverse.
+All'avvio dell'applicazione viene mostrata una schermata dove si chiedono le credenziali di mySQL, per accedere al database se necessario oppure per crearlo, se non è esistente.
+\begin{figure}[H]
+	\centering{}
+	\includegraphics[width=\textwidth]{img/Application/Credentials.jpg}
+	\caption{Il login con le credenziali di MySQL}
+\end{figure}
+Una volta acceduto compare una schermata di login, per permettere ai diversi utenti di identificarsi e fare operazioni diverse.
 Attualmente per fare il login il nome utente è il codice dell'utente e la password il nome, ma in una fase successiva del progetto questo login verrà reso più sicuro, memorizzando una password (non in chiaro) e un nome utente. 
-Il login permette di identificare univocamente quale utente esegue certe azioni e modificare il database di conseguenza. Il login va a buon fine solo se le credenziali sono uguali a quelle memorizzate nel database
+Il login permette di identificare univocamente quale utente esegue certe azioni e modificare il database di conseguenza. Il login va a buon fine solo se le credenziali sono uguali a quelle memorizzate nel database.
 \subsection*{Schermate cliente}
 Il cliente una volta entrato nell'applicazione dopo il login si trova in una schermata dove può visualizzare lo 
 storico delle spese passate, assieme allo stato di consegna. Se il cliente ha delle spese non ancora consegnate può andare a vedere nel dettaglio l'indirizzo e altri dati.
@@ -760,5 +797,4 @@ Le pagine di creazione e modifica delle entità permettono di inserire i dati re
 \end{figure}
 In particolare nella gestione delle fabbriche viene implementato il vincolo inespresso che impedisce ad una fabbrica di essere gestita da più produttori in contemporanea 
 perchè il salvataggio dei dati avviene solo se i dati sono legali, altrimenti compare un messaggio di errore.
-%tabella operazione originale -> metodo/classe
 \end{document}
