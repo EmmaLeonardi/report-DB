@@ -1,5 +1,6 @@
 \documentclass[a4paper,12pt]{report}
 \usepackage{graphicx}
+\usepackage{hyperref}
 \usepackage[utf8]{inputenc}
 \usepackage{url}
 \usepackage{pdfpages}
@@ -179,10 +180,9 @@ Lo schema concettuale finale, dopo l'integrazione delle viste:
 \end{figure}
 \begin{figure}[h]
 	\centering{}
-	\includegraphics[width=\textwidth]{img/SchemaConcettuale-fin2.pdf}
+	\includegraphics[width=0.50\textwidth]{img/SchemaConcettuale-fin2.pdf}
 	\caption{Lo schema concettuale finale, seconda pagina}
 \end{figure}
-
 \chapter{Progettazione Logica}
 \section{Stima del volume dei dati}
 \begin{center}
@@ -273,7 +273,7 @@ Iscrivere un nuovo Cliente
 	\hline
 	\end{tabular}
 \end{center}
-Totale: 1S → 2000 volte al giorno\\
+Totale: 1S → 2000 costo totale\\
 \textbf{Operazione 2:}
 Cambiare il prezzo ad un prodotto esistente
 \begin{center}
@@ -287,7 +287,7 @@ Cambiare il prezzo ad un prodotto esistente
 	\hline
 	\end{tabular}
 \end{center}
-Totale: 2S → 200 volte al giorno\\
+Totale: 2S → 200 costo totale\\
 \textbf{Operazione 3:}
 Creare una nuova guida ad un corriere ed un mezzo esistenti
 \begin{center}
@@ -303,7 +303,7 @@ Creare una nuova guida ad un corriere ed un mezzo esistenti
 	\hline
 	\end{tabular}
 \end{center}
-Totale: 3S → 600 volte al giorno\\
+Totale: 3S → 600 costo totale\\
 \textbf{Operazione 4:}
 Leggere il prezzo medio di un prodotto\\
 \begin{center}
@@ -317,7 +317,7 @@ Leggere il prezzo medio di un prodotto\\
 	\hline
 	\end{tabular}
 \end{center}
-Totale: 6L → 60 volte al giorno\\
+Totale: 6L → 60 costo totale\\
 \textbf{Operazione 5:}
 Leggere quale corriere ha consegnato una data spesa\\
 \begin{figure}[H]
@@ -340,7 +340,7 @@ Leggere quale corriere ha consegnato una data spesa\\
 	\hline
 	\end{tabular}
 \end{center}
-Totale: 4L → 400 volte al giorno\\
+Totale: 4L → 400 costo totale\\
 \textbf{Operazione 6:}
 Trovare il produttore di un dato prodotto\\
 \begin{center}
@@ -354,7 +354,7 @@ Trovare il produttore di un dato prodotto\\
 	\hline
 	\end{tabular}
 \end{center}
-Totale: 2L → 2000 volte al giorno\\
+Totale: 2L → 2000 costo totale\\
 \textbf{Operazione 7:}
 Creare una nuova spesa\\
 \begin{center}
@@ -368,7 +368,7 @@ Creare una nuova spesa\\
 	\hline
 	\end{tabular}
 \end{center}
-Totale: 2L → 200 volte al giorno\\
+Totale: 2S → 400 costo totale\\
 \textbf{Operazione 8:}
 Leggere l'indirizzo associato ad una consegna\\
 \begin{center}
@@ -382,7 +382,7 @@ Leggere l'indirizzo associato ad una consegna\\
 	\hline
 	\end{tabular}
 \end{center}
-Totale: 2L → 4000 volte al giorno\\
+Totale: 2L → 4000 costo totale\\
 \textbf{Operazione 9:}
 Cercare un prodotto di una taglia specifica\\
 \begin{center}
@@ -396,7 +396,7 @@ Cercare un prodotto di una taglia specifica\\
 	\hline
 	\end{tabular}
 \end{center}
-Totale: 6L → 600 volte al giorno\\
+Totale: 6L → 600 costo totale\\
 
 \textbf{Operazione 10:}
 Cercare tutte le consegne di un corriere\\
@@ -411,7 +411,7 @@ Cercare tutte le consegne di un corriere\\
 	\hline
 	\end{tabular}
 \end{center}
-Totale: 40L → 800 volte al giorno\\
+Totale: 40L → 800 costo totale\\
 \textbf{Operazione 11:}
 Ricavare l'ultima consegna ad un cliente\\
 \begin{figure}[H]
@@ -434,7 +434,7 @@ Ricavare l'ultima consegna ad un cliente\\
 	\hline
 	\end{tabular}
 \end{center}
-Totale: 20L → 2000 volte al giorno\\
+Totale: 20L → 2000 costo totale\\
 \textbf{Operazione 12:}
 Cambiare gestione ad una fabbrica\\
 \begin{center}
@@ -450,7 +450,7 @@ Cambiare gestione ad una fabbrica\\
 	\hline
 	\end{tabular}
 \end{center}
-Totale: 3S → 6 volte al giorno\\
+Totale: 3S → 6 costo totale\\
 \textbf{Operazione 13:}
 Inserire un nuovo mezzo\\
 \begin{center}
@@ -462,7 +462,7 @@ Inserire un nuovo mezzo\\
 	\hline
 	\end{tabular}
 \end{center}
-Totale: 1S → 4 volte al giorno\\
+Totale: 1S → 4 costo totale\\
 \section{Raffinamento dello schema}
 \subsection{Eliminazione delle gerarchie}
 Nello schema ER compaiono tre gerarchie da eliminare.\\
@@ -527,7 +527,7 @@ Ci sono due relazioni ridondanti nello schema concettuale: Compimento e Fabbrica
 	\hline
 	\end{tabular}
 \end{center}
-Totale: 4L → 400 volte al giorno\\
+Totale: 4L → 400 costo totale\\
 \textbf{Operazione 10:}
 Cercare tutte le consegne di un corriere\\
 \begin{center}
@@ -541,7 +541,7 @@ Cercare tutte le consegne di un corriere\\
 	\hline
 	\end{tabular}
 \end{center}
-Totale: 40L → 800 volte al giorno\\
+Totale: 40L → 800 costo totale\\
 \textbf{Senza ridondanza:}\\
 \textbf{Operazione 5:}Leggere quale corriere ha consegnato una data spesa\\
 \begin{center}
@@ -567,7 +567,7 @@ Totale: 40L → 800 volte al giorno\\
 	\hline
 	\end{tabular}
 \end{center}
-Totale: 20L → 2000 volte al giorno\\
+Totale: 20L → 2000 costo totale\\
 \textbf{Operazione 10:}
 Cercare tutte le consegne di un corriere\\
 \begin{center}
@@ -589,7 +589,7 @@ Cercare tutte le consegne di un corriere\\
 	\hline
 	\end{tabular}
 \end{center}
-Totale: 152L → 3040 volte al giorno\\
+Totale: 152L → 3040 costo totale\\
 \\
 In totale mantenere la ridondanza ha un costo di 400+800=1200 operazioni al giorno, mentre rimuoverla ha un costo di 2000+3040=5040 operazioni al giorno. Si ha un evidente vantaggio computazionale a mantenere la ridondanza.\\
 \subsection{Analisi delle ridondanze: Fabbricazione}
@@ -606,7 +606,7 @@ In totale mantenere la ridondanza ha un costo di 400+800=1200 operazioni al gior
 	\hline
 	\end{tabular}
 \end{center}
-Totale: 2L → 2000 volte al giorno\\
+Totale: 2L → 2000 costo totale\\
 \textbf{Senza ridondanza:}\\
 \textbf{Operazione 6:} Trovare il produttore di un dato prodotto\\
 \begin{center}
@@ -628,7 +628,7 @@ Totale: 2L → 2000 volte al giorno\\
 	\hline
 	\end{tabular}
 \end{center}
-Totale: 6L → 6000 volte al giorno\\
+Totale: 6L → 6000 costo totale\\
 \\
 In totale mantenere la ridondanza ha un costo di 2000 operazioni al giorno, mentre rimuoverla ha un costo di 6000 operazioni al giorno. Si ha un evidente vantaggio computazionale a mantenere la ridondanza.\\
 \section{Traduzione di entità e associazioni in relazioni}
@@ -714,7 +714,7 @@ INSERT INTO MEZZI(Targa, Paese\_immatricolazione, Marca, Tipo\_veicolo)\\
 VALUES('?', '?', '?', '?');\\
 \chapter{Progettazione dell'applicazione}
 \section{Descrizione dell'architettura dell'applicazione}
-L'applicazione per interfacciarsi con il Database è stata realizzata in linguaggio Java con rende possibile l'esecuzione di operazioni per l'utente. 
+L'applicazione per interfacciarsi con il Database è stata realizzata in linguaggio Java che rende possibile l'esecuzione di operazioni per l'utente. 
 L'interfacciamento versio il Database è stato fornito da JDBC, il database risiede in locale e e usa MySQL come DBMS. 
 L'applicazione usa JavaFX per la grafica, caricandola da file FXML, uno per ogni schermata che si appoggiano al loro Controller relativo. 
 L'interazione con il database è stata gestita attraverso classi che estendono l'interfaccia Table, una per tabella del DB. 
