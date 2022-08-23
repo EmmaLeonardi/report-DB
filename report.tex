@@ -493,7 +493,20 @@ L'unico attributo composto presente nello schema concettuale è Indirizzo, prese
 Le chiavi primarie scelte sono presenti nello schema concettuale finale. 
 L'unica modifica è la creazione di un Codice Guida, che permette di identificare più facilmente la Guida.
 \subsection{Eliminazione degli identificatori esterni}
-%todo
+Nello schema ER sono state eliminate le seguenti relazioni:\\
+Pagamento viene rimosso, Spesa incorpora il codice persona di cliente\\
+Recapitato viene rimosso, Consegna incorpora il codice Spesa (opzionale)\\
+Contenuto diventa una entità, con come attributi il codice spesa e codice prodotto in vendita, che formano la chiave primaria \\
+Compimento viene rimosso, Consegna incorpora il codice persona di corriere (opzionale)\\
+Effettuazione viene rimosso, Consegna incorpora la targa (opzionale)\\
+Riferimento viene rimosso, Consegna incorpora il codice indirizzo\\
+Conducente viene rimosso, Guida incorpora il codice persona di corriere\\
+Utilizzo viene rimosso, Guida incorpora la targa\\
+Commercializzato viene rimosso, Prodotto in Vendita incorpora il codice prodotto\\
+Fabbricazione viene rimosso, Prodotto incorpora il codice persona di produttore\\
+Gestione viene rimosso, Gestione fabbriche incorpora il codice persona di produttore\\
+Amministrazione viene rimosso, Gestione fabbriche incorpora il codice fabbrica\\
+Produzione viene rimosso, Prodotto incorpora il codice prodotto\\
 \section{Analisi delle ridondanze}
 Ci sono due relazioni ridondanti nello schema concettuale: Compimento e Fabbricazione.
 \subsection{Analisi delle ridondanze: Compimento}
